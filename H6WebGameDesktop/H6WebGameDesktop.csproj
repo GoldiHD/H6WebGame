@@ -35,6 +35,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
@@ -55,6 +58,29 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Entity\User.cs" />
+    <Compile Include="MVVM\Commands\CreateAccountCommand.cs" />
+    <Compile Include="MVVM\Commands\OpenCreateAccountCommand.cs" />
+    <Compile Include="MVVM\Commands\LoginCommand.cs" />
+    <Compile Include="MVVM\Commands\ReturnToLoginFromACCommand.cs" />
+    <Compile Include="MVVM\Models\CreateAccountModel.cs" />
+    <Compile Include="MVVM\Models\LoginModel.cs" />
+    <Compile Include="MVVM\Models\BaseModel.cs" />
+    <Compile Include="MVVM\ViewModels\CreateAccountViewModel.cs" />
+    <Compile Include="MVVM\ViewModels\LoginViewModel.cs" />
+    <Compile Include="MVVM\ViewModels\MainWindowViewModel.cs" />
+    <Compile Include="MVVM\Views\CreateAccount.xaml.cs">
+      <DependentUpon>CreateAccount.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MVVM\Views\Login.xaml.cs">
+      <DependentUpon>Login.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MVVM\Views\MainPage.xaml.cs">
+      <DependentUpon>MainPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Tools\AccessAPI.cs" />
+    <Compile Include="Tools\Pages.cs" />
+    <Compile Include="Tools\SingleTon.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -67,8 +93,22 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="MVVM\Views\CreateAccount.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MVVM\Views\Login.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MVVM\Views\MainPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MVVM\ValueConverters\BaseValueConverter.cs" />
+    <Compile Include="MVVM\ValueConverters\PageValueConverter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -86,6 +126,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -93,6 +134,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Entity\ItemSystem\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

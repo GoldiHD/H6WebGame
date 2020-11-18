@@ -1,4 +1,5 @@
-﻿using System;
+﻿using H6WebGameDesktop.MVVM.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,14 @@ namespace H6WebGameDesktop
     /// </summary>
     public partial class MainWindow : Window
     {
+
+        public static MainWindowViewModel WVM;
+
         public MainWindow()
         {
             InitializeComponent();
+            WVM = new MainWindowViewModel(this);
+            this.DataContext = WVM;
         }
     }
 }

@@ -14,16 +14,20 @@ using System.Text;
 
 namespace H6WebGameAPI.Controllers
 {
-    [Authorize]
+
     public class AccountController : Controller
     {
-        [Route("api/auth/login/")]
-        public ActionResult<string> GetAuthToken(User LoginData)
+        [HttpGet]
+        [Route("api/auth/login")]
+        public ActionResult<User> GetAuthToken(string username, string password)
         {
-            foreach(User element in SingleTon.GetSQLAccessor().GetUser())
+            User LoginData = new User() { username = username, password = password };
+            List<User> Users = SingleTon.GetSQLAccessor().GetUser();
+            foreach (User element in Users)
             {
                 if(element.username == LoginData.username)
                 {
+                    User CurrentUser = element;
                     if (SingleTon.GetCryptoHashing().VerifyHash(LoginData.password, element.password))
                     {
                         Claim[] claims = new[] { new Claim(JwtRegisteredClaimNames.Sub, element.userID) };
@@ -32,17 +36,20 @@ namespace H6WebGameAPI.Controllers
                         SigningCredentials signingCredentials = new SigningCredentials(key, Algo);
 
                         JwtSecurityToken token = new JwtSecurityToken(SingleTon.readSetting("issuer"), SingleTon.readSetting("audiance"), claims, notBefore: DateTime.Now, expires: DateTime.Now.AddDays(1), signingCredentials);
-                        return Ok(new JwtSecurityTokenHandler().WriteToken(token));
+                        CurrentUser.password = "";
+                        CurrentUser.token = new JwtSecurityTokenHandler().WriteToken(token);
+                        return Ok(CurrentUser);
                     }
                 }
             }
             return BadRequest();
         }
-
-        [Route("api/auth/createaccount/")]
-        public ActionResult CreateAccount(User newAccount)
+        [HttpGet]
+        [Route("api/auth/createaccount")]
+        public ActionResult CreateAccount(string username, string password)
         {
-            foreach(User element in SingleTon.GetSQLAccessor().GetUser())
+            User newAccount = new User() { username = username, password = password };
+            foreach (User element in SingleTon.GetSQLAccessor().GetUser())
             {
                 if(element.username == newAccount.username)
                 {

@@ -7,6 +7,6 @@ namespace H6WebGameAPI.Entity
 {
     public class PlayerInventory
     {
-        public int myGold { get; set; }
+        public List<ItemSystem.BaseItem> items = new List<ItemSystem.BaseItem>();
     }
 }

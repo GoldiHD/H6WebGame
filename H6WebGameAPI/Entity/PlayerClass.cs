@@ -7,5 +7,7 @@ namespace H6WebGameAPI.Entity
 {
     public class PlayerClass
     {
+        public int PlayerClassID { get; set; }
+
     }
 }

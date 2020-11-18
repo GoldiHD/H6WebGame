@@ -3,10 +3,10 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:H6WebGameDesktop"
+        xmlns:local="clr-namespace:H6WebGameDesktop.MVVM.ValueConverters"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        
+        <Frame Height="auto" Width="auto" NavigationUIVisibility="Hidden" Name="MainFrame" Content="{Binding currentPage, Converter={local:PageValueConverter}}" Background="#2c2f33"/>
     </Grid>
 </Window>

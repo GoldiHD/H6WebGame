@@ -20,7 +20,9 @@ namespace H6WebGameAPI
     {
         public Startup(IConfiguration configuration)
         {
+            new MapHandler().CreateMap();
             Configuration = configuration;
+            SingleTon.SetIconfig(configuration);
         }
 
         public IConfiguration Configuration { get; }
@@ -28,7 +30,8 @@ namespace H6WebGameAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            SymmetricSecurityKey key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(SingleTon.readSetting("secret")));
+            string temp = SingleTon.readSetting("secret");
+            SymmetricSecurityKey key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(temp));
             services.AddAuthentication("OAuth").AddJwtBearer("OAuth", config =>
             {
                 config.TokenValidationParameters = new TokenValidationParameters()
@@ -46,8 +49,7 @@ namespace H6WebGameAPI
                 options.AddPolicy("CorsPolicy",
                     builder => builder
                         .AllowAnyMethod()
-                        .AllowCredentials()
-                        .SetIsOriginAllowed((host) => true)
+                        .AllowAnyOrigin()
                         .AllowAnyHeader());
             });
         }
@@ -68,7 +70,7 @@ namespace H6WebGameAPI
 
             app.UseAuthorization();
 
-            app.UseCors();
+            app.UseCors("CorsPolicy");
 
             app.UseEndpoints(endpoints =>
             {

@@ -1,0 +1,34 @@
+﻿@page "/main"
+<div style="display:flex">
+    <div style="width: 50%">
+        @foreach (Entity.Message element in Messages)
+        {
+        <div style="margin-bottom: 2rem; border-style: double">
+            <p>@element.UserID - @element.DateTime.Hour:@element.DateTime.Minute </p>
+            <p>@element.MessageContent</p>
+        </div>
+        }
+    </div>
+    <div style="width: 50%; display: grid; grid-gap: 1rem; grid-template-columns: auto auto auto;">
+        <div><img /></div>
+        <div>2</div>
+        <div>3</div>
+        <div>4</div>
+        <div>5</div>
+        <div>6</div>
+        <div>7</div>
+        <div>8</div>
+        <div>9</div>
+    </div>
+</div>
+<button>Send</button>
+<input />
+@code {
+    private static List<Entity.Message> Messages;
+
+    protected override void OnInitialized()
+    {
+        Messages = Tools.SingleTon.GetAccessAPI().GetMessages(-1).Result;
+        base.OnInitialized();
+    }
+}

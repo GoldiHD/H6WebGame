@@ -7,9 +7,9 @@ namespace H6WebGameAPI.Entity
 {
     public class User
     {
-        public string userID;
-        public string username;
-        public string password;//hashed ofc
-        public string token;
+        public string userID { get; set; }
+        public string username { get; set; }
+        public string password { get; set; }
+        public string token { get; set; }
     }
 }

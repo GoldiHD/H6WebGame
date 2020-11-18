@@ -1,0 +1,29 @@
+﻿<Page x:Class="H6WebGameDesktop.MVVM.Views.MainPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:H6WebGameDesktop.MVVM.Views"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="MainPage">
+
+    <Grid>
+        <Button Content="Menu" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="75"/>
+        <Grid HorizontalAlignment="Left" Height="304" Margin="457,54,0,0" VerticalAlignment="Top" Width="304">
+            <Image HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="100"/>
+            <Image HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="100" Margin="105,0,0,0"/>
+            <Image HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="100" Margin="205,0,-8,0"/>
+            <Image HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="100" Margin="0,105,0,0"/>
+            <Image HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="100" Margin="105,105,0,0"/>
+            <Image HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="100" Margin="205,105,-1,0"/>
+            <Image HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="100" Margin="0,204,0,0"/>
+            <Image HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="100" Margin="100,204,0,0"/>
+            <Image HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="100" Margin="205,204,-1,0"/>
+        </Grid>
+        <TextBlock HorizontalAlignment="Left" Margin="10,54,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="287" Width="375"><Run Text=""/></TextBlock>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="172,396,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="508"/>
+        <Button Content="Send" HorizontalAlignment="Left" Margin="52,395,0,0" VerticalAlignment="Top" Width="75"/>
+
+    </Grid>
+</Page>

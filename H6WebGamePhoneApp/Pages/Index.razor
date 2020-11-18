@@ -1,7 +1,47 @@
 ﻿@page "/"
+@inject NavigationManager NavigationManager
 
-<h1>Hello, world!</h1>
+<div id="login">
+    <h3 class="text-center text-white pt-5">Login form</h3>
+    <div class="container">
+        <div id="login-row" class="row justify-content-center align-items-center">
+            <div id="login-column" class="col-md-6">
+                <div id="login-box" class="col-md-12">
+                    <h3 class="text-center text-info">Login</h3>
+                    <label for="username" class="text-info">Username:</label><br>
+                    <input type="text" @bind="username" name="username" id="username" class="form-control">
+                    <label for="password" class="text-info">Password:</label><br>
+                    <input type="password" name="password" @bind="password" id="password" class="form-control">
+                    <div style="display: inline; margin-top: 2rem">
+                        <button @onclick="(() => Login(username, password))" class="btn" style="background-color: white; margin-right: 1rem ">Login</button>
+                        <button @onclick="CreateAccount"  style="background-color: white;" class="btn">Create Account</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
-Welcome to your new app.
+@code
+{
+    private string password;
+    private string username;
 
-<SurveyPrompt Title="How is Blazor working for you?" />
+    public async Task Login(string _username, string _password)
+    {
+        if (await Tools.SingleTon.GetAccessAPI().LoginIntoProfile(_username, _password))
+        {
+            NavigationManager.NavigateTo("main");
+        }
+        else
+        {
+            username = "";
+            password = "";
+        }
+    }
+
+    public void CreateAccount()
+    {
+        NavigationManager.NavigateTo("/createaccount");
+    }
+}
